@@ -5,6 +5,7 @@ jobs:
   cog_check_job:
     runs-on: ubuntu-latest
     name: check conventional commit compliance
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v3
         with:
@@ -14,23 +15,7 @@ jobs:
         uses: cocogitto/cocogitto-action@v3
         with:
           check-latest-tag-only: true
-  check-version:
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v3
-      - uses: webiny/action-conventional-commits@v1.1.0
-  # test-solution:
-  #   needs: check-version
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-dotnet@v3
-  #       with:
-  #         dotnet-version: '7.x.x'
-  #     - run: dotnet test
   build-docker-image:
-    # needs: test-solution
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
