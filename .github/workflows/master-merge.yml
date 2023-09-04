@@ -3,7 +3,7 @@ run-name: merging to master
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   cog_release_job:
     runs-on: ubuntu-latest
