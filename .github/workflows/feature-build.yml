@@ -1,6 +1,9 @@
 name: feature-build
 run-name: building feat
-on: [push] 
+on:
+  push:
+    branches:
+      - '!main'
 jobs:
   cog_check_job:
     runs-on: ubuntu-latest
