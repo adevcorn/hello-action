@@ -5,17 +5,20 @@ on:
     branches:
       - master
 jobs:
-  cog_check_job:
+  cog_release_job:
     runs-on: ubuntu-latest
-    name: check conventional commit compliance
+    name: Semver release
     steps:
-      - uses: actions/checkout@v3
+      - uses: cocogitto/cocogitto-action@v3
+        id: release
         with:
-          fetch-depth: 0
-      - name: Conventional commit check
-        uses: cocogitto/cocogitto-action@v3
-        with:
-          check-latest-tag-only: true
+          release: true
+          git-user: 'Cog Bot'
+          git-user-email: 'mycoolproject@org.org'
+
+      # The version number is accessible as a github action output
+      - name: Print version
+        run: "echo '${{ steps.release.outputs.version }}'"
   build-docker-image:
     runs-on: ubuntu-latest
     steps:
