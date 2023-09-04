@@ -3,6 +3,7 @@ run-name: building feat
 on:
   push:
     branches:
+      - '*'
       - '!main'
 jobs:
   cog_check_job:
